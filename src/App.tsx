@@ -18,7 +18,6 @@ function App() {
 
     return (
         <div className={classes.app}>
-
             <h1>{a}</h1>
             <button onClick={onClickHandler}>Number</button>
             <button onClick={ZeroHandler}>0</button>
