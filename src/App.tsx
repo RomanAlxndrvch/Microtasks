@@ -1,29 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import classes from "./App.module.css";
 import {Button} from "./components/Button";
+import {Simulate} from "react-dom/test-utils";
 
 
 function App() {
+    let [a, setA] = useState(1)
 
-    const btn1 = (name: string, age: number) => {
-        console.log(name, age)
+    const onClickHandler = () => {
+        setA(++a)
+        console.log(a)
     }
 
-    const btn2 = (name: string) => {
-        console.log(name)
-    }
-    const btn3 = () => {
-        console.log('Im Stupid Button')
+    const ZeroHandler = () => {
+        setA(a = 0)
     }
 
     return (
         <div className={classes.app}>
-            <Button name={'My YouTube Channel 1'} callBack={() => btn1('1', 21)}/>
-            <Button name={'My YouTube Channel 2'} callBack={() => btn2('2',)}/>
-            <Button name={'Im Stupid Button'} callBack={btn3}/>
+
+            <h1>{a}</h1>
+            <button onClick={onClickHandler}>Number</button>
+            <button onClick={ZeroHandler}>0</button>
+
         </div>
-    );
+
+    )
 }
+
 
 export default App;
