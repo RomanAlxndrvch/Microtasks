@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import classes from "./App.module.css";
+import {BtnAndTable} from "./BtnAndTable";
 // import {Button} from "./components/Button";
 // import {Simulate} from "react-dom/test-utils";
 
@@ -38,22 +38,8 @@ function App() {
 
     }
 
-    return (<div className={classes.app}>
-            <ul>
-                {currentMoney.map((el, index) =>
-                    <li key={index}>
-                        <span> {el.banknots} </span>
-                        <span> {el.value} </span>
-                        <span> {el.number} </span>
-                    </li>
-                )}
-
-            </ul>
-            <button onClick={onClickFilterHandler}>Dollars</button>
-            <button onClick={onClickFilterHandler}>Rubls</button>
-            <button onClick={onClickFilterHandler}>All</button>
-        </div>
-
+    return (
+        <BtnAndTable banknots={currentMoney} onClickHandler={onClickFilterHandler}/>
     )
 }
 
