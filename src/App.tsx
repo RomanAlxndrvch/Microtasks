@@ -1,45 +1,35 @@
 import React, {useState} from 'react';
-import {BtnAndTable} from "./BtnAndTable";
+//import {BtnAndTable} from "./BtnAndTable";
 // import {Button} from "./components/Button";
 // import {Simulate} from "react-dom/test-utils";
+import classes from "./App.module.css";
+import {FullInput} from "./components/Fullinput";
 
+
+type MessageType = {
+    message: string
+}
 
 function App() {
-    const [money, setMoney] = useState([
-        {banknots: 'Dollars', value: 100, number: ' a1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' z1234567890'},
-        {banknots: 'RUBLS', value: 100, number: ' w1234567890'},
-        {banknots: 'Dollars', value: 100, number: ' e1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' c1234567890'},
-        {banknots: 'RUBLS', value: 100, number: ' r1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' x1234567890'},
-        {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
-    ])
-    let [button, defineBtn] = useState('')
+    let [message, setMessage] = useState<Array<MessageType>>([
+        {message: 'message1'},
+        {message: 'message2'},
+        {message: 'message3'}])
 
-    let currentMoney = money
-
-    if (button === 'Rubls') {
-        currentMoney = money.filter((el) => el.banknots === 'RUBLS')
-    }
-    if (button === 'Dollars') {
-        currentMoney = money.filter((el) => el.banknots === 'Dollars')
-    }
-    if (button === 'All') {
-        currentMoney = money
-    }
-
-    ////////////////////////////////////////////
-
-    const onClickFilterHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const btn = e.currentTarget.innerText
-        defineBtn(button = btn)
-
-
+    const addMessage = (t: string) => {
+        let newMessage = message.concat([{message: t}])
+        setMessage(newMessage)
     }
 
     return (
-        <BtnAndTable banknots={currentMoney} onClickHandler={onClickFilterHandler}/>
+        <div className={classes.app}>
+            <FullInput addMessage={addMessage}/>
+            {message.map((el, index) => {
+                return (
+                    <div key={index}>{el.message}</div>
+                )
+            })}
+        </div>
     )
 }
 
