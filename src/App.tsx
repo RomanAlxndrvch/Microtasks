@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-//import {BtnAndTable} from "./BtnAndTable";
-// import {Button} from "./components/Button";
-// import {Simulate} from "react-dom/test-utils";
 import classes from "./App.module.css";
-import {FullInput} from "./components/Fullinput";
+import {Input} from "./components/Input";
+import {ButtonForInput} from "./components/ButtonForInput";
 
 
 type MessageType = {
@@ -16,14 +14,22 @@ function App() {
         {message: 'message2'},
         {message: 'message3'}])
 
+    let [title, setTitle] = useState('')
+
     const addMessage = (t: string) => {
         const newMessage = {message: t}
         setMessage([newMessage, ...message])
+        setTitle('')
+    }
+
+    function callBackButton() {
+        addMessage(title)
     }
 
     return (
         <div className={classes.app}>
-            <FullInput addMessage={addMessage}/>
+            <Input title={title} setTitle={setTitle}/>
+            <ButtonForInput name={'+'} callback={callBackButton}/>
             {message.map((el, index) => {
                 return (
                     <div key={index}>{el.message}</div>
