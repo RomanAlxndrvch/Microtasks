@@ -17,8 +17,8 @@ function App() {
         {message: 'message3'}])
 
     const addMessage = (t: string) => {
-        let newMessage = message.concat([{message: t}])
-        setMessage(newMessage)
+        const newMessage = {message: t}
+        setMessage([newMessage, ...message])
     }
 
     return (

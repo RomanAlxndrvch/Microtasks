@@ -1,25 +1,29 @@
 import React, {ChangeEvent, useState} from "react";
 
 type AddMessagePropsType = {
-    addMessage: (e: any) => void
+    addMessage: (e: string) => void
 }
 
 export function FullInput(props: AddMessagePropsType) {
     let [title, setTitle] = useState('')
 
     function onChangeInputHandler(input: ChangeEvent<HTMLInputElement>) {
-        setTitle(input.target.value)
+        setTitle(input.currentTarget.value)
     }
+
+    function onClickButtonHandler() {
+        props.addMessage(title)
+        setTitle('')
+    }
+
 
     return (
         <div>
             <div>
                 <input onChange={(e) => {
                     onChangeInputHandler(e)
-                }}/>
-                <button onClick={() => {
-                    props.addMessage(title)
-                }}>+
+                }} value={title}/>
+                <button onClick={onClickButtonHandler}>+
                 </button>
             </div>
         </div>
