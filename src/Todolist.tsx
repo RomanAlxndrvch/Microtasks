@@ -14,7 +14,7 @@ type PropsType = {
     removeTask: (taskId: string, todoListId: string) => void
     changeFilter: (value: FilterValuesType, id: string) => void
     addTask: (title: string, todoListId: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean) => void
+    changeTaskStatus: (taskId: string, isDone: boolean,todoListId:string) => void
     filter: FilterValuesType
 }
 
@@ -65,7 +65,7 @@ export function Todolist(props: PropsType) {
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(t.id, props.todoListId)
                     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                        props.changeTaskStatus(t.id, e.currentTarget.checked);
+                        props.changeTaskStatus(t.id, e.currentTarget.checked,props.todoListId);
                     }
 
                     return <li key={t.id} className={t.isDone ? "is-done" : ""}>
